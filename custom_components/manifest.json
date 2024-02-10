@@ -1,0 +1,22 @@
+{
+  "domain": "poolsync",
+  "name": "Autopilot Poolsync",
+  "codeowners": [
+    "@jgemkow"
+  ],
+  "version": "1.0.0",
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://www.home-assistant.io/integrations/poolsync",
+  "homekit": {},
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "requirements": [
+    "pypoolsync==0.0.1",
+    "deepdiff==6.7.1"
+  ],
+  "ssdp": [],
+  "zeroconf": [],
+  "loggers": ["custom_components.poolsync", "pypoolsync"]
+
+}

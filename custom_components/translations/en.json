@@ -1,0 +1,39 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Device is already configured"
+        },
+        "error": {
+            "cannot_connect": "Failed to connect",
+            "invalid_auth": "Invalid authentication",
+            "unknown": "Unexpected error"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Host",
+                    "password": "Password",
+                    "username": "Username"
+                }
+            }
+        }
+    },
+    "entity": {
+        "number": {
+            "chlor_output": {
+                "name": "Chlorine output"
+            }
+        },
+        "sensor": {
+            "flow_rate": {
+                "name": "Flow rate"
+            },
+            "salt_level": {
+                "name": "Salt level"
+            },
+            "water_temp": {
+                "name": "Water temperature"
+            }
+        }
+    }
+}
