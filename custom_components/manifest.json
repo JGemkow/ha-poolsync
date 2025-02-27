@@ -4,7 +4,7 @@
   "codeowners": [
     "@jgemkow"
   ],
-  "version": "1.0.0",
+  "version": "1.1.0",
   "config_flow": true,
   "dependencies": [],
   "documentation": "https://www.home-assistant.io/integrations/poolsync",
@@ -12,7 +12,7 @@
   "integration_type": "hub",
   "iot_class": "cloud_polling",
   "requirements": [
-    "pypoolsync==0.0.1",
+    "pypoolsync==0.1.2",
     "deepdiff==6.7.1"
   ],
   "ssdp": [],

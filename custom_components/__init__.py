@@ -9,7 +9,7 @@ from homeassistant.const import CONF_ACCESS_TOKEN, CONF_USERNAME, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryNotReady
 
-from .const import CONF_ID_TOKEN, CONF_REFRESH_TOKEN, DOMAIN
+from .const import CONF_REFRESH_TOKEN, DOMAIN
 from .entity import PoolsyncDataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
@@ -24,14 +24,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     client = Poolsync(
         username=entry.data.get(CONF_USERNAME),
         access_token=entry.data.get(CONF_ACCESS_TOKEN),
-        id_token=entry.data.get(CONF_ID_TOKEN),
         refresh_token=entry.data.get(CONF_REFRESH_TOKEN),
     )
 
-    try:
-        await hass.async_add_executor_job(client.get_user)
-    except PoolsyncAuthenticationError as err:
-        raise ConfigEntryAuthFailed(err) from err
+    try :
+        if (await hass.async_add_executor_job(client.is_logged_in) == False):
+            raise ConfigEntryAuthFailed(err) from err
     except Exception as ex:
         raise ConfigEntryNotReady(ex) from ex
 

@@ -61,28 +61,18 @@ class PoolsyncDataUpdateCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self):
         """Update data via library, refresh token if necessary."""
         try:
-            if hubs := await self.hass.async_add_executor_job(self.api.get_hubs):
-                enrichedDevices = []
-
-                for hub in hubs:
-                    baseDevices = await self.hass.async_add_executor_job(
-                        self.api.get_hubdevices, hub.hubId
-                    )
-                    for baseDevice in baseDevices:
-                        enrichedDevice = await self.hass.async_add_executor_job(
-                            self.api.get_hubdevicedetails, baseDevice
-                        )
-                        enrichedDevices.append(enrichedDevice)
+            if allDevices := await self.hass.async_add_executor_job(self.api.get_all_hub_devices):
 
                 diff = DeepDiff(
                     self.devices,
-                    enrichedDevices,
+                    allDevices,
                     ignore_order=True,
                     report_repetition=True,
                     verbose_level=2,
                 )
+                
                 _LOGGER.debug("Devices updated: %s", diff if diff else "no changes")
-                self.devices = enrichedDevices
+                self.devices = allDevices
         except Exception as err:  # pylint: disable=broad-except
             _LOGGER.error(
                 "Unknown exception while updating Poolsync data: %s", err, exc_info=1
