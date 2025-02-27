@@ -47,15 +47,15 @@ async def async_setup_entry(
                 icon="mdi:waves-arrow-up",
                 translation_key="chlor_output",
                 native_step=1.0,
-                value=lambda device: device.chlorOutput,
+                value=lambda device: device.chlor_output,
                 number_option_fn=lambda coordinator,
                 option,
                 device: coordinator.change_chlor_output(device, int(option)),
             ),
-            device_id=device.hubId + "-" + str(device.deviceIndex),
+            device_id=device.hub_id + "-" + str(device.device_index),
         )
         for device in coordinator.get_devices()
-        if device.deviceType in ["chlorSync"]
+        if device.device_type in ["chlorSync"]
     ]
 
     if not entities:

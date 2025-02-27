@@ -38,7 +38,7 @@ class PoolsyncDataUpdateCoordinator(DataUpdateCoordinator):
             (
                 device
                 for device in self.devices
-                if (device.hubId + "-" + str(device.deviceIndex)) == device_id
+                if (device.hub_id + "-" + str(device.device_index)) == device_id
             ),
             None,
         )
@@ -48,7 +48,7 @@ class PoolsyncDataUpdateCoordinator(DataUpdateCoordinator):
         return [
             device
             for device in self.devices
-            if device_type is None or device.deviceType == device_type
+            if device_type is None or device.device_type == device_type
         ]
 
     async def change_chlor_output(self, device: PoolsyncDevice, newValue: int) -> None:

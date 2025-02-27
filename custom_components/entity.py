@@ -36,8 +36,8 @@ class PoolsyncEntity(CoordinatorEntity[PoolsyncDataUpdateCoordinator]):
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, device_id)},
             manufacturer=MAKER,
-            model=device.deviceName,
-            name=device.deviceName,
+            model=device.device_name,
+            name=device.device_name,
         )
 
     def get_device(self) -> PoolsyncDevice | None:

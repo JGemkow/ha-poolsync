@@ -47,7 +47,7 @@ SENSOR_MAP: dict[str | None, tuple[PoolsyncSensorEntityDescription, ...]] = {
             key="salt_level",
             state_class=SensorStateClass.MEASUREMENT,
             translation_key="salt_level",
-            value_fn=lambda device: device.saltLevel,
+            value_fn=lambda device: device.salt_level,
         ),
         PoolsyncSensorEntityDescription(
             key="water_temp",
@@ -55,7 +55,7 @@ SENSOR_MAP: dict[str | None, tuple[PoolsyncSensorEntityDescription, ...]] = {
             device_class=SensorDeviceClass.TEMPERATURE,
             native_unit_of_measurement=UnitOfTemperature.CELSIUS,
             translation_key="water_temp",
-            value_fn=lambda device: device.waterTemp,
+            value_fn=lambda device: device.water_temp,
         ),
         PoolsyncSensorEntityDescription(
             key="flow_rate",
@@ -64,7 +64,7 @@ SENSOR_MAP: dict[str | None, tuple[PoolsyncSensorEntityDescription, ...]] = {
             state_class=SensorStateClass.MEASUREMENT,
             translation_key="flow_rate",
             icon="mdi:water-sync",
-            value_fn=lambda device: device.flowRate,
+            value_fn=lambda device: device.flow_rate,
         ),
     ),
 }
@@ -85,12 +85,12 @@ async def async_setup_entry(
             coordinator=coordinator,
             config_entry=config_entry,
             description=description,
-            device_id=device.hubId + "-" + str(device.deviceIndex),
+            device_id=device.hub_id + "-" + str(device.device_index),
         )
         for device in coordinator.get_devices()
         for device_type, descriptions in SENSOR_MAP.items()
         for description in descriptions
-        if device_type is None or device.deviceType == device_type
+        if device_type is None or device.device_type == device_type
     ]
 
     if not entities:

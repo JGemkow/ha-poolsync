@@ -29,7 +29,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     try :
         if (await hass.async_add_executor_job(client.is_logged_in) == False):
-            raise ConfigEntryAuthFailed(err) from err
+            raise ConfigEntryAuthFailed
     except Exception as ex:
         raise ConfigEntryNotReady(ex) from ex
 
