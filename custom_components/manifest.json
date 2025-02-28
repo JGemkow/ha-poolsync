@@ -12,7 +12,7 @@
   "integration_type": "hub",
   "iot_class": "cloud_polling",
   "requirements": [
-    "pypoolsync==0.1.4",
+    "pypoolsync==0.1.5",
     "deepdiff==6.7.1"
   ],
   "ssdp": [],
